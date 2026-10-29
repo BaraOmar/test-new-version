@@ -1,0 +1,851 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CultureHR — Complete System Features &amp; Modules Reference</title>
+  <style>
+    :root {
+      --bg: #f1f5f9;
+      --card: #ffffff;
+      --text: #0f172a;
+      --muted: #64748b;
+      --border: #e2e8f0;
+      --accent: #642754;
+      --accent-light: #f8f4f8;
+      --blue: #2563eb;
+      --green: #059669;
+      --amber: #d97706;
+      --rose: #e11d48;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+    .hero {
+      background: linear-gradient(135deg, #642754 0%, #3b1f35 100%);
+      color: #fff;
+      padding: 3rem 1.5rem 4rem;
+    }
+    .hero-inner { max-width: 1100px; margin: 0 auto; }
+    .hero h1 { margin: 0 0 0.5rem; font-size: 2.25rem; font-weight: 800; letter-spacing: -0.02em; }
+    .hero p { margin: 0; opacity: 0.9; max-width: 60ch; }
+    .hero-meta { margin-top: 1.25rem; display: flex; flex-wrap: wrap; gap: 0.75rem; }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0.35rem 0.75rem;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.2);
+    }
+    .layout { max-width: 1100px; margin: -2rem auto 3rem; padding: 0 1.5rem; display: grid; grid-template-columns: 260px 1fr; gap: 2rem; align-items: start; }
+    @media (max-width: 900px) { .layout { grid-template-columns: 1fr; } .toc { position: static !important; } }
+    .toc {
+      position: sticky;
+      top: 1.5rem;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 1rem;
+      padding: 1.25rem;
+      box-shadow: 0 4px 20px rgba(15,23,42,0.06);
+    }
+    .toc h2 { margin: 0 0 0.75rem; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); }
+    .toc a {
+      display: block;
+      padding: 0.35rem 0;
+      color: var(--text);
+      text-decoration: none;
+      font-size: 0.9rem;
+      border-bottom: 1px solid transparent;
+    }
+    .toc a:hover { color: var(--accent); }
+    .toc .sub { padding-left: 0.75rem; font-size: 0.82rem; color: var(--muted); }
+    main { min-width: 0; }
+    section {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 1rem;
+      padding: 1.75rem;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 4px 20px rgba(15,23,42,0.04);
+    }
+    section h2 {
+      margin: 0 0 1rem;
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: var(--accent);
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid var(--accent-light);
+    }
+    section h3 {
+      margin: 1.5rem 0 0.75rem;
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--text);
+    }
+    section h4 {
+      margin: 1rem 0 0.5rem;
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    p { margin: 0 0 0.75rem; color: var(--muted); }
+    ul, ol { margin: 0 0 1rem; padding-left: 1.25rem; }
+    li { margin-bottom: 0.35rem; }
+    li strong { color: var(--text); }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.88rem;
+      margin: 0.75rem 0 1rem;
+    }
+    th, td {
+      border: 1px solid var(--border);
+      padding: 0.55rem 0.75rem;
+      text-align: left;
+      vertical-align: top;
+    }
+    th { background: var(--accent-light); font-weight: 700; color: var(--accent); }
+    tr:nth-child(even) td { background: #fafafa; }
+    code, .route {
+      font-family: ui-monospace, "Cascadia Code", monospace;
+      font-size: 0.82rem;
+      background: #f1f5f9;
+      padding: 0.15rem 0.4rem;
+      border-radius: 0.35rem;
+      color: #334155;
+    }
+    .route { display: inline-block; margin: 0.1rem 0; }
+    .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1rem; margin: 1rem 0; }
+    .card {
+      border: 1px solid var(--border);
+      border-radius: 0.75rem;
+      padding: 1rem;
+      background: #fafafa;
+    }
+    .card h4 { margin-top: 0; color: var(--text); text-transform: none; letter-spacing: 0; }
+    .tag {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 0.2rem 0.5rem;
+      border-radius: 0.35rem;
+      margin-right: 0.35rem;
+      margin-bottom: 0.35rem;
+    }
+    .tag-portal { background: #dbeafe; color: #1d4ed8; }
+    .tag-module { background: #ede9fe; color: #6d28d9; }
+    .tag-feature { background: #d1fae5; color: #047857; }
+    .tag-perm { background: #fef3c7; color: #b45309; }
+    .tag-stub { background: #ffe4e6; color: #be123c; }
+    .feature-list { list-style: none; padding: 0; margin: 0; }
+    .feature-list li {
+      padding: 0.5rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .feature-list li:last-child { border-bottom: none; }
+    footer {
+      text-align: center;
+      padding: 2rem 1.5rem;
+      color: var(--muted);
+      font-size: 0.85rem;
+    }
+    .summary-stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 0.75rem;
+      margin: 1rem 0;
+    }
+    .stat {
+      text-align: center;
+      padding: 1rem;
+      border-radius: 0.75rem;
+      background: var(--accent-light);
+      border: 1px solid #e9d5ef;
+    }
+    .stat .num { font-size: 1.75rem; font-weight: 800; color: var(--accent); }
+    .stat .label { font-size: 0.75rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em; }
+  </style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="hero-inner">
+    <h1>CultureHR System Reference</h1>
+    <p>Complete documentation of every portal, module, feature, permission, and capability in the HRMS-NEW (Yii2) application.</p>
+    <div class="hero-meta">
+      <span class="badge">7 Portals</span>
+      <span class="badge">9 Yii Modules</span>
+      <span class="badge">38 HR Permissions</span>
+      <span class="badge">33+ Controllers</span>
+      <span class="badge">Generated Jul 2026</span>
+    </div>
+  </div>
+</header>
+
+<div class="layout">
+  <nav class="toc" aria-label="Table of contents">
+    <h2>Contents</h2>
+    <a href="#overview">Overview</a>
+    <a href="#portals">Top-Level Portals</a>
+    <a href="#roles">User Roles</a>
+    <a href="#permissions">Permission Catalog (38)</a>
+    <a class="sub" href="#perm-groups">Permission Groups</a>
+    <a href="#hr-portal">HR Portal Module</a>
+    <a class="sub" href="#hr-dashboard">Dashboard</a>
+    <a class="sub" href="#hr-employees">Employees</a>
+    <a class="sub" href="#hr-departments">Org Departments</a>
+    <a class="sub" href="#hr-school">School Departments</a>
+    <a class="sub" href="#hr-attendance">Attendance</a>
+    <a class="sub" href="#hr-surveys">Surveys</a>
+    <a class="sub" href="#hr-evaluations">Evaluations</a>
+    <a class="sub" href="#hr-student-affairs">Student Affairs</a>
+    <a class="sub" href="#hr-student-health">Student Health</a>
+    <a class="sub" href="#hr-parents">Parents Directory</a>
+    <a class="sub" href="#hr-finance">Financial Resources</a>
+    <a class="sub" href="#hr-recruitment">Recruitment</a>
+    <a class="sub" href="#hr-change-requests">Change Requests</a>
+    <a class="sub" href="#hr-career">Career Paths</a>
+    <a class="sub" href="#hr-manage">User Permissions</a>
+    <a href="#employee-portal">Employee Portal</a>
+    <a href="#lms-portal">LMS Portal</a>
+    <a href="#recruitment-portal">Recruitment Portals</a>
+    <a href="#shared-modules">Shared Modules</a>
+    <a href="#auth">Authentication &amp; Site</a>
+    <a href="#maturity">Feature Maturity Notes</a>
+  </nav>
+
+  <main>
+
+    <section id="overview">
+      <h2>Overview</h2>
+      <p><strong>CultureHR</strong> is a Yii 2 Advanced Template application for human resources, school operations, finance, learning management, and employee self-service. The main application runs on the <code>frontend</code> app; shared business logic lives in <code>common/modules</code>.</p>
+      <div class="summary-stats">
+        <div class="stat"><div class="num">7</div><div class="label">Portals</div></div>
+        <div class="stat"><div class="num">9</div><div class="label">Yii Modules</div></div>
+        <div class="stat"><div class="num">38</div><div class="label">Permission Keys</div></div>
+        <div class="stat"><div class="num">14</div><div class="label">HR Nav Modules</div></div>
+        <div class="stat"><div class="num">6</div><div class="label">Employee Nav Items</div></div>
+      </div>
+      <h3>Registered Yii Modules</h3>
+      <table>
+        <thead><tr><th>Module</th><th>Location</th><th>Purpose</th></tr></thead>
+        <tbody>
+          <tr><td><strong>hr</strong></td><td><code>frontend/modules/hr</code></td><td>HR administration portal (CultureHR sidebar)</td></tr>
+          <tr><td><strong>employee</strong></td><td><code>frontend/modules/employee</code></td><td>Employee self-service portal</td></tr>
+          <tr><td><strong>lms</strong></td><td><code>common/modules/lms</code></td><td>Learning Management System (students &amp; teachers)</td></tr>
+          <tr><td><strong>recruitment</strong></td><td><code>common/modules/recruitment</code></td><td>Job postings, applicants, recruiters</td></tr>
+          <tr><td><strong>survey</strong></td><td><code>common/modules/survey</code></td><td>Employee survey builder &amp; responses</td></tr>
+          <tr><td><strong>evaluation</strong></td><td><code>common/modules/evaluation</code></td><td>Employee evaluation builder &amp; responses</td></tr>
+          <tr><td><strong>document</strong></td><td><code>common/modules/document</code></td><td>Secure document upload &amp; viewing</td></tr>
+          <tr><td><strong>dashboard</strong></td><td><code>common/modules/dashboard</code></td><td>Alternate analytics dashboard</td></tr>
+          <tr><td><strong>employee (common)</strong></td><td><code>common/modules/employee</code></td><td>Shared models &amp; services (Employee, School, Attendance, etc.)</td></tr>
+        </tbody>
+      </table>
+      <p><strong>Finance</strong> is implemented as shared services/models under <code>common/modules/finance</code> and exposed through the HR <code>FinanceController</code> (not a separate Yii module shell).</p>
+    </section>
+
+    <section id="portals">
+      <h2>Top-Level Portals</h2>
+      <div class="grid-2">
+        <div class="card">
+          <span class="tag tag-portal">Portal</span>
+          <h4>HR Portal</h4>
+          <p>Base route: <span class="route">/hr/*</span></p>
+          <p>Access: users with <code>role = hr</code> or <code>admin</code> plus JSON permissions. Full administration via CultureHR sidebar.</p>
+        </div>
+        <div class="card">
+          <span class="tag tag-portal">Portal</span>
+          <h4>Employee Portal</h4>
+          <p>Base route: <span class="route">/employee/*</span></p>
+          <p>Access: <code>role = employee</code>. HR users with linked employee records can switch via <span class="route">/site/employee-portal</span>.</p>
+        </div>
+        <div class="card">
+          <span class="tag tag-portal">Portal</span>
+          <h4>LMS Portal</h4>
+          <p>Base route: <span class="route">/lms/*</span></p>
+          <p>Access: students (<code>role = student</code>) and teachers (employees with teacher category).</p>
+        </div>
+        <div class="card">
+          <span class="tag tag-portal">Portal</span>
+          <h4>Recruitment — Applicant</h4>
+          <p>Base route: <span class="route">/recruitment/applicant/*</span></p>
+          <p>Separate session for job applicants: register, apply, track status.</p>
+        </div>
+        <div class="card">
+          <span class="tag tag-portal">Portal</span>
+          <h4>Recruitment — Recruiter</h4>
+          <p>Base route: <span class="route">/recruitment/recruiter/*</span></p>
+          <p>Standalone recruiter session UI (also wrapped by HR portal).</p>
+        </div>
+        <div class="card">
+          <span class="tag tag-portal">Portal</span>
+          <h4>Public / Auth</h4>
+          <p>Base route: <span class="route">/site/*</span>, <span class="route">/auth/*</span></p>
+          <p>Login, signup, password reset, email verification, contact, about.</p>
+        </div>
+        <div class="card">
+          <span class="tag tag-portal">Portal</span>
+          <h4>Backend Admin Shell</h4>
+          <p>Base route: <span class="route">/backend/site/*</span></p>
+          <p>Stock Yii backend login only — no feature modules.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="roles">
+      <h2>User Roles &amp; Access Model</h2>
+      <table>
+        <thead><tr><th>Role</th><th>Portal Access</th><th>Notes</th></tr></thead>
+        <tbody>
+          <tr><td><code>employee</code></td><td>Employee Portal</td><td>Teachers may also access LMS teacher portal</td></tr>
+          <tr><td><code>hr</code> / <code>admin</code></td><td>HR Portal</td><td>Access controlled by <code>permissions</code> JSON on user record</td></tr>
+          <tr><td><code>student</code></td><td>LMS Student Portal</td><td>Learning library, schedule, marks, health record</td></tr>
+          <tr><td>Super HR Admin</td><td>All HR permissions</td><td><code>is_super_admin = 1</code> — bypasses permission checks</td></tr>
+          <tr><td>External HR User</td><td>HR Portal per permissions</td><td>Dashboard user with no linked employee record</td></tr>
+          <tr><td>Applicant</td><td>Recruitment applicant session</td><td>Separate from main user table session</td></tr>
+          <tr><td>Recruiter</td><td>Recruitment recruiter session</td><td>Separate recruiter session</td></tr>
+        </tbody>
+      </table>
+      <p>Permissions use <strong>module-root keys</strong> (e.g. <code>finance</code>) that grant all child features, or individual feature keys for fine-grained access. Aliases: <code>requests</code> → <code>change_requests</code>, <code>career</code> → <code>career_paths</code>.</p>
+    </section>
+
+    <section id="permissions">
+      <h2>Permission Catalog — All 38 Keys</h2>
+      <p>Every permission that can be assigned on the <strong>User Permissions</strong> page (<span class="route">/hr/hr/manage-hr</span>). Source: <code>HrPermissionCatalog</code>.</p>
+      <table>
+        <thead><tr><th>Permission Key</th><th>Label</th><th>Default Route</th></tr></thead>
+        <tbody>
+          <tr><td><code>dashboard</code></td><td>Dashboard</td><td><span class="route">/hr/hr/dashboard</span></td></tr>
+          <tr><td><code>employees</code></td><td>Employees Module (full access)</td><td><span class="route">/hr/hr/employees</span></td></tr>
+          <tr><td><code>employees_directory</code></td><td>Employee Directory</td><td><span class="route">/hr/hr/employees</span></td></tr>
+          <tr><td><code>school_departments</code></td><td>School Departments</td><td><span class="route">/hr/school-department/index</span></td></tr>
+          <tr><td><code>school_departments_hierarchy</code></td><td>Infrastructure Hierarchy</td><td><span class="route">/hr/school-department/hierarchy</span></td></tr>
+          <tr><td><code>school_departments_create</code></td><td>Add New Department</td><td><span class="route">/hr/school-department/create</span></td></tr>
+          <tr><td><code>subjects</code></td><td>Subjects Catalog</td><td><span class="route">/hr/school-department/subjects</span></td></tr>
+          <tr><td><code>attendance</code></td><td>Attendance Module (full access)</td><td><span class="route">/hr/hr/attendance</span></td></tr>
+          <tr><td><code>attendance_overview</code></td><td>Attendance Overview</td><td><span class="route">/hr/hr/attendance</span></td></tr>
+          <tr><td><code>attendance_management</code></td><td>Attendance Management</td><td><span class="route">/hr/hr/attendance-management</span></td></tr>
+          <tr><td><code>attendance_configuration</code></td><td>Attendance Configuration</td><td><span class="route">/hr/hr/attendance-configuration</span></td></tr>
+          <tr><td><code>attendance_leave_requests</code></td><td>Leave Requests</td><td><span class="route">/hr/hr/attendance-leave-requests</span></td></tr>
+          <tr><td><code>surveys</code></td><td>Surveys</td><td><span class="route">/hr/survey/index</span></td></tr>
+          <tr><td><code>evaluations</code></td><td>Evaluations</td><td><span class="route">/hr/evaluation/index</span></td></tr>
+          <tr><td><code>timetable</code></td><td>Timetable</td><td><span class="route">/lms/timetable/index</span></td></tr>
+          <tr><td><code>student_affairs</code></td><td>Student Affairs (full access)</td><td><span class="route">/hr/student-affairs/index</span></td></tr>
+          <tr><td><code>student_affairs_registry</code></td><td>Student Registry</td><td><span class="route">/hr/student-affairs/students</span></td></tr>
+          <tr><td><code>student_affairs_create</code></td><td>Add New Student</td><td><span class="route">/hr/student-affairs/create</span></td></tr>
+          <tr><td><code>student_health</code></td><td>Student Health (full access)</td><td><span class="route">/hr/student-health/index</span></td></tr>
+          <tr><td><code>student_health_files</code></td><td>Health Files</td><td><span class="route">/hr/student-health/files</span></td></tr>
+          <tr><td><code>student_health_clinic</code></td><td>Record Clinic Visit</td><td><span class="route">/hr/student-health/clinic-visits</span></td></tr>
+          <tr><td><code>student_health_records</code></td><td>Visit Records</td><td><span class="route">/hr/student-health/clinic-visit-records</span></td></tr>
+          <tr><td><code>parents_directory</code></td><td>Parents Directory</td><td><span class="route">/hr/parents/index</span></td></tr>
+          <tr><td><code>finance</code></td><td>Financial Resources (full access)</td><td><span class="route">/hr/finance/hub</span></td></tr>
+          <tr><td><code>finance_journal_entries</code></td><td>Journal Entries</td><td><span class="route">/hr/finance/index</span></td></tr>
+          <tr><td><code>finance_journal_create</code></td><td>Add Journal Entry</td><td><span class="route">/hr/finance/create</span></td></tr>
+          <tr><td><code>finance_chart_of_accounts</code></td><td>Chart of Accounts</td><td><span class="route">/hr/finance/accounts</span></td></tr>
+          <tr><td><code>finance_account_statement</code></td><td>Account Statement</td><td><span class="route">/hr/finance/account-statement</span></td></tr>
+          <tr><td><code>finance_reports</code></td><td>Financial Reports</td><td><span class="route">/hr/finance/reports</span></td></tr>
+          <tr><td><code>finance_create_account</code></td><td>Add Account</td><td><span class="route">/hr/finance/create-account</span></td></tr>
+          <tr><td><code>recruitment</code></td><td>Recruit Management (full access)</td><td><span class="route">/hr/recruitment/index</span></td></tr>
+          <tr><td><code>recruitment_jobs</code></td><td>Create a New Job</td><td><span class="route">/hr/recruitment/job-form</span></td></tr>
+          <tr><td><code>recruitment_reports</code></td><td>Report Generating</td><td><span class="route">/hr/recruitment/reports</span></td></tr>
+          <tr><td><code>recruitment_applications</code></td><td>Applications &amp; Interviews</td><td><span class="route">/hr/recruitment/applications</span></td></tr>
+          <tr><td><code>recruitment_application_status</code></td><td>Application Status</td><td><span class="route">/hr/recruitment/application-status</span></td></tr>
+          <tr><td><code>change_requests</code></td><td>Change Requests</td><td><span class="route">/hr/hr/requests</span></td></tr>
+          <tr><td><code>career_paths</code></td><td>Career Paths</td><td><span class="route">/hr/hr/career</span></td></tr>
+          <tr><td><code>manage_hr</code></td><td>Manage HR &amp; Permissions</td><td><span class="route">/hr/hr/manage-hr</span></td></tr>
+          <tr><td><code>lms</code></td><td>LMS Administration</td><td><span class="route">/lms/portal/teacher</span></td></tr>
+        </tbody>
+      </table>
+
+      <h3 id="perm-groups">Permission Groups (UI Organization)</h3>
+      <table>
+        <thead><tr><th>Group</th><th>Permissions Included</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Core &amp; People</strong></td><td>dashboard, employees, employees_directory, school_departments, school_departments_hierarchy, school_departments_create, subjects</td></tr>
+          <tr><td><strong>Attendance</strong></td><td>attendance, attendance_overview, attendance_management, attendance_configuration, attendance_leave_requests</td></tr>
+          <tr><td><strong>Analytics</strong></td><td>surveys, evaluations, timetable</td></tr>
+          <tr><td><strong>Student Services</strong></td><td>student_affairs, student_affairs_registry, student_affairs_create, student_health (+ files, clinic, records), parents_directory</td></tr>
+          <tr><td><strong>Financial Resources</strong></td><td>finance (+ all 6 finance sub-permissions)</td></tr>
+          <tr><td><strong>Operations</strong></td><td>recruitment (+ all 4 recruitment sub-permissions), change_requests, career_paths</td></tr>
+          <tr><td><strong>Administration</strong></td><td>manage_hr, lms</td></tr>
+        </tbody>
+      </table>
+      <p><strong>Presets:</strong> <em>Full Access</em> grants most module roots; <em>Limited</em> grants <code>dashboard</code> + <code>employees_directory</code> only.</p>
+    </section>
+
+    <section id="hr-portal">
+      <h2>HR Portal Module</h2>
+      <p>Default route: <span class="route">/hr/hr/dashboard</span>. All features below require HR role + appropriate permission unless Super Admin.</p>
+
+      <h3>HR Sidebar Navigation (14 modules)</h3>
+      <ol>
+        <li>Dashboard</li>
+        <li>Employees</li>
+        <li>School Departments (Infrastructure Hierarchy, Add New Department)</li>
+        <li>Attendance (Management, Configuration, Leave Requests)</li>
+        <li>Surveys</li>
+        <li>Evaluations</li>
+        <li>Subjects</li>
+        <li>Timetable</li>
+        <li>Student Affairs (Student Registry, Add New Student)</li>
+        <li>Student Health (Health Files, Record Visit, Visit Records)</li>
+        <li>Parents Directory</li>
+        <li>Financial Resources (6 sub-features)</li>
+        <li>Recruit Management (4 sub-features)</li>
+        <li>Change Requests</li>
+        <li>Career Paths</li>
+        <li>LMS</li>
+        <li>User Permissions</li>
+      </ol>
+
+      <h3 id="hr-dashboard">1. Dashboard</h3>
+      <span class="tag tag-feature">Feature</span><span class="tag tag-perm">dashboard</span>
+      <ul class="feature-list">
+        <li><strong>HR Dashboard</strong> — <span class="route">/hr/hr/dashboard</span> — Organization stats: employee count, survey response rate, evaluation response rate, pending change requests, module access cards</li>
+        <li><strong>HR Index Redirect</strong> — <span class="route">/hr/hr/index</span> — Redirects to first permitted module home route</li>
+      </ul>
+
+      <h3 id="hr-employees">2. Employees &amp; Onboarding</h3>
+      <span class="tag tag-feature">Feature</span><span class="tag tag-perm">employees / employees_directory</span>
+      <ul class="feature-list">
+        <li><strong>Employee Directory</strong> — <span class="route">/hr/hr/employees</span> — Search/filter by name, org department, school department, status, joining date; view all employees and teachers</li>
+        <li><strong>View Employee Profile</strong> — <span class="route">/hr/hr/view-employee?id=</span> — Full profile: name, email, phone, job title, department, manager, joining date, status</li>
+        <li><strong>Employee Onboarding (Create/Edit)</strong> — <span class="route">/hr/hr/onboarding</span> — Create new employee or edit existing; assign org department, school department, manager, teacher flag, user account</li>
+        <li><strong>Employee Actions</strong> — POST <span class="route">/hr/hr/employee-action</span> — Delete employee, change active/inactive status</li>
+        <li><strong>Managers by Department</strong> — AJAX — Manager picker filtered by org department</li>
+      </ul>
+
+      <h3 id="hr-departments">3. Organization Departments</h3>
+      <span class="tag tag-feature">Feature</span><span class="tag tag-module">DepartmentController</span>
+      <ul class="feature-list">
+        <li><strong>Department List</strong> — <span class="route">/hr/department/index</span> — List all organizational HR departments</li>
+        <li><strong>View Department</strong> — <span class="route">/hr/department/view?id=</span> — Department detail with member list and employee count</li>
+        <li><strong>Create Department</strong> — <span class="route">/hr/department/create</span> — Add new org department with manager assignment</li>
+        <li><strong>Update Department</strong> — <span class="route">/hr/department/update?id=</span> — Edit department name and manager</li>
+        <li><strong>Delete Department</strong> — POST — Delete if no employees assigned</li>
+      </ul>
+
+      <h3 id="hr-school">4. School Departments &amp; Infrastructure</h3>
+      <span class="tag tag-feature">Feature</span><span class="tag tag-perm">school_departments / subjects</span>
+      <ul class="feature-list">
+        <li><strong>School Departments Hub</strong> — <span class="route">/hr/school-department/index</span> — Overview of all school academic departments</li>
+        <li><strong>Infrastructure Hierarchy</strong> — <span class="route">/hr/school-department/hierarchy</span> — Browse tree: Department → Grade → Section</li>
+        <li><strong>Create School Department</strong> — <span class="route">/hr/school-department/create</span> — Add department with head/deputy head assignment</li>
+        <li><strong>View School Department</strong> — <span class="route">/hr/school-department/view?id=</span> — Department detail</li>
+        <li><strong>Update School Department</strong> — <span class="route">/hr/school-department/update?id=</span> — Edit department</li>
+        <li><strong>Delete School Department</strong> — POST — Remove department</li>
+        <li><strong>Subjects Catalog</strong> — <span class="route">/hr/school-department/subjects</span> — Subject listing by department and grade</li>
+        <li><strong>Subject Index</strong> — <span class="route">/hr/school-department/subject-index</span> — Full subject listing</li>
+        <li><strong>Create Subject</strong> — <span class="route">/hr/school-department/create-subject</span> — Add new subject</li>
+        <li><strong>View Subject</strong> — <span class="route">/hr/school-department/view-subject?id=</span> — Subject detail</li>
+        <li><strong>Update Subject</strong> — <span class="route">/hr/school-department/update-subject?id=</span> — Edit subject</li>
+        <li><strong>Delete Subject</strong> — POST — Remove subject</li>
+        <li><strong>Add Grade</strong> — POST — Add grade level to department</li>
+        <li><strong>Delete Grade</strong> — POST — Remove grade</li>
+        <li><strong>Create Section</strong> — <span class="route">/hr/school-department/create-section?grade_id=</span> — Create class section</li>
+        <li><strong>Section Detail</strong> — <span class="route">/hr/school-department/section?id=</span> — Section roster, assigned materials, class teacher, enrolled students</li>
+        <li><strong>Section Print</strong> — <span class="route">/hr/school-department/section-print?id=</span> — Printable section roster</li>
+        <li><strong>Assign Class Teacher</strong> — POST — Assign lead teacher to section</li>
+        <li><strong>Assign Course Material</strong> — POST — Link LMS material to section</li>
+        <li><strong>Update Material Assignment</strong> — POST — Edit material on section</li>
+        <li><strong>Delete Material Assignment</strong> — POST — Remove material from section</li>
+        <li><strong>Enroll Student in Section</strong> — POST — Assign student to section</li>
+        <li><strong>Remove Student from Section</strong> — POST — Unenroll student</li>
+        <li><strong>Save Section Details</strong> — POST — Update section metadata</li>
+        <li><strong>Grades by Department</strong> — AJAX — Grade picker for forms</li>
+      </ul>
+
+      <h3 id="hr-attendance">5. Employee Attendance &amp; Leave</h3>
+      <span class="tag tag-feature">Feature</span><span class="tag tag-perm">attendance (+ sub-keys)</span>
+      <ul class="feature-list">
+        <li><strong>Attendance Overview</strong> — <span class="route">/hr/hr/attendance</span> — Org-wide attendance summary with navigation to sub-modules</li>
+        <li><strong>Attendance Management</strong> — <span class="route">/hr/hr/attendance-management</span> — Daily org-wide attendance review, filter, status tracking</li>
+        <li><strong>Attendance Configuration</strong> — <span class="route">/hr/hr/attendance-configuration</span> — Shift start/end times, grace windows, off-day policies</li>
+        <li><strong>Employee Attendance Log</strong> — <span class="route">/hr/hr/attendance-employee-log?id=</span> — Per-employee monthly attendance log</li>
+        <li><strong>Leave Requests (HR Review)</strong> — <span class="route">/hr/hr/attendance-leave-requests</span> — Review, approve, or reject employee leave requests</li>
+        <li><strong>Leave Review Action</strong> — POST — Approve/reject individual leave request</li>
+        <li><strong>Attendance CSV Export</strong> — GET — Export attendance data</li>
+      </ul>
+
+      <h3 id="hr-surveys">6. Surveys</h3>
+      <span class="tag tag-feature">Feature</span><span class="tag tag-perm">surveys</span>
+      <ul class="feature-list">
+        <li><strong>Survey List</strong> — <span class="route">/hr/survey/index</span> — All surveys with filters (status, department)</li>
+        <li><strong>Create Survey</strong> — <span class="route">/hr/survey/create</span> — Survey builder: questions, options, question types</li>
+        <li><strong>Update Schedule</strong> — <span class="route">/hr/survey/update-schedule?id=</span> — Set open/close dates and time window</li>
+        <li><strong>Send Survey</strong> — <span class="route">/hr/survey/send?id=</span> — Target employees by department or individual selection</li>
+        <li><strong>Preview Respond</strong> — <span class="route">/hr/survey/respond?id=</span> — HR preview of survey form</li>
+        <li><strong>Survey Results</strong> — <span class="route">/hr/survey/results?id=</span> — Analytics and response breakdown</li>
+        <li><strong>Delete Survey</strong> — POST — Remove survey</li>
+        <li><strong>Anonymous Surveys</strong> — Optional anonymous response flag</li>
+      </ul>
+
+      <h3 id="hr-evaluations">7. Evaluations</h3>
+      <span class="tag tag-feature">Feature</span><span class="tag tag-perm">evaluations</span>
+      <ul class="feature-list">
+        <li><strong>Evaluation List</strong> — <span class="route">/hr/evaluation/index</span> — All evaluations with filters</li>
+        <li><strong>Create Evaluation</strong> — <span class="route">/hr/evaluation/create</span> — Evaluation builder (mirrors survey builder)</li>
+        <li><strong>Update Schedule</strong> — <span class="route">/hr/evaluation/update-schedule?id=</span> — Set evaluation window</li>
+        <li><strong>Send Evaluation</strong> — <span class="route">/hr/evaluation/send?id=</span> — Target employees</li>
+        <li><strong>Preview Respond</strong> — <span class="route">/hr/evaluation/respond?id=</span> — HR preview</li>
+        <li><strong>Evaluation Results</strong> — <span class="route">/hr/evaluation/results?id=</span> — Results analytics</li>
+        <li><strong>Delete Evaluation</strong> — POST — Remove evaluation</li>
+      </ul>
+
+      <h3 id="hr-student-affairs">8. Student Affairs</h3>
+      <span class="tag tag-feature">Feature</span><span class="tag tag-perm">student_affairs (+ sub-keys)</span>
+      <ul class="feature-list">
+        <li><strong>Student Affairs Hub</strong> — <span class="route">/hr/student-affairs/index</span> — Overview and quick links</li>
+        <li><strong>Student Registry</strong> — <span class="route">/hr/student-affairs/students</span> — Full student list with filters: department, grade, section, national ID, status, academic year</li>
+        <li><strong>Enroll New Student</strong> — <span class="route">/hr/student-affairs/create</span> — Full enrollment: personal info, guardian, documents, portal account, parent finance link, school placement</li>
+        <li><strong>View Student</strong> — <span class="route">/hr/student-affairs/view?id=</span> — Student profile with enrollment details</li>
+        <li><strong>Update Student</strong> — <span class="route">/hr/student-affairs/update?id=</span> — Edit student record</li>
+        <li><strong>Delete Student</strong> — POST — Remove student</li>
+        <li><strong>Delete Student Document</strong> — POST — Remove uploaded enrollment document</li>
+        <li><strong>Export Registry (Excel)</strong> — GET — Export student list to Excel</li>
+        <li><strong>Export Registry (PDF)</strong> — GET — Export student list to PDF</li>
+      </ul>
+
+      <h3 id="hr-student-health">9. Student Health</h3>
+      <span class="tag tag-feature">Feature</span><span class="tag tag-perm">student_health (+ sub-keys)</span>
+      <ul class="feature-list">
+        <li><strong>Student Health Hub</strong> — <span class="route">/hr/student-health/index</span> — Overview</li>
+        <li><strong>Health Files Registry</strong> — <span class="route">/hr/student-health/files</span> — All student health files</li>
+        <li><strong>Create Health File</strong> — <span class="route">/hr/student-health/create?student_id=</span> — New health record for student</li>
+        <li><strong>View Health File</strong> — <span class="route">/hr/student-health/view?id=</span> — Health file detail</li>
+        <li><strong>Update Health File</strong> — <span class="route">/hr/student-health/update?id=</span> — Edit health file</li>
+        <li><strong>Delete Health File</strong> — POST — Remove health file</li>
+        <li><strong>Record Clinic Visit</strong> — <span class="route">/hr/student-health/clinic-visits</span> — Log new clinic visit</li>
+        <li><strong>Clinic Visit Records</strong> — <span class="route">/hr/student-health/clinic-visit-records</span> — Full visit history</li>
+        <li><strong>Notify Parents</strong> — POST — Send parent notification for clinic visit</li>
+        <li><strong>Student Health Summary</strong> — AJAX — Quick summary panel for student</li>
+        <li><strong>Delete Clinic Visit</strong> — POST — Remove visit record</li>
+      </ul>
+
+      <h3 id="hr-parents">10. Parents Directory</h3>
+      <span class="tag tag-feature">Feature</span><span class="tag tag-perm">parents_directory</span>
+      <ul class="feature-list">
+        <li><strong>Parents Directory</strong> — <span class="route">/hr/parents/index</span> — Searchable list of parent/guardian accounts (finance parent profiles)</li>
+        <li><strong>View Parent</strong> — <span class="route">/hr/parents/view?id=</span> — Parent profile with linked children</li>
+        <li><strong>Update Parent</strong> — <span class="route">/hr/parents/update?id=</span> — Edit parent and children records</li>
+      </ul>
+
+      <h3 id="hr-finance">11. Financial Resources</h3>
+      <span class="tag tag-feature">Feature</span><span class="tag tag-perm">finance (+ 6 sub-keys)</span>
+      <ul class="feature-list">
+        <li><strong>Finance Hub</strong> — <span class="route">/hr/finance/hub</span> — Navigation cards to all finance sub-modules</li>
+        <li><strong>Journal Entries List</strong> — <span class="route">/hr/finance/index</span> — All journal entries</li>
+        <li><strong>Create Journal Entry</strong> — <span class="route">/hr/finance/create</span> — New double-entry journal entry form</li>
+        <li><strong>View Journal Entry</strong> — <span class="route">/hr/finance/view?id=</span> — Entry detail with line items</li>
+        <li><strong>Save Journal Entry</strong> — POST — Persist journal entry</li>
+        <li><strong>Chart of Accounts</strong> — <span class="route">/hr/finance/accounts</span> — Full account hierarchy</li>
+        <li><strong>Create Account</strong> — <span class="route">/hr/finance/create-account</span> — Add new ledger account</li>
+        <li><strong>Save Account</strong> — POST — Persist account</li>
+        <li><strong>Suggest Account Code</strong> — AJAX — Auto-generate account code</li>
+        <li><strong>Parent Account Options</strong> — AJAX — Parent account picker</li>
+        <li><strong>Account Statement</strong> — <span class="route">/hr/finance/account-statement</span> — Running balance for selected account</li>
+        <li><strong>Financial Reports</strong> — <span class="route">/hr/finance/reports</span> — Trial Balance, Profit &amp; Loss, Balance Sheet, Account Statement reports</li>
+      </ul>
+
+      <h3 id="hr-recruitment">12. Recruitment (HR-facing)</h3>
+      <span class="tag tag-feature">Feature</span><span class="tag tag-perm">recruitment (+ 4 sub-keys)</span>
+      <ul class="feature-list">
+        <li><strong>Recruitment Hub</strong> — <span class="route">/hr/recruitment/index</span> — Overview</li>
+        <li><strong>Job Listings</strong> — <span class="route">/hr/recruitment/jobs</span> — All open/closed job postings</li>
+        <li><strong>Create/Edit Job</strong> — <span class="route">/hr/recruitment/job-form</span> — Job posting form with requirements</li>
+        <li><strong>Close Job</strong> — POST — Close job to new applications</li>
+        <li><strong>Open Job</strong> — POST — Reopen job</li>
+        <li><strong>Delete Job</strong> — POST — Remove job posting</li>
+        <li><strong>Applications &amp; Interviews</strong> — <span class="route">/hr/recruitment/applications</span> — All applications with interview scheduling</li>
+        <li><strong>Application Status</strong> — <span class="route">/hr/recruitment/application-status?id=</span> — Single application detail, status updates, feedback</li>
+        <li><strong>Recruitment Reports</strong> — <span class="route">/hr/recruitment/reports</span> — Hiring pipeline reports</li>
+        <li><strong>Export Report</strong> — GET — Download recruitment report</li>
+        <li><strong>Download Applicant Resume</strong> — GET — Resume file download</li>
+        <li><strong>Convert Applicant to Employee</strong> — POST — Hire applicant and create employee record</li>
+      </ul>
+
+      <h3 id="hr-change-requests">13. Change Requests</h3>
+      <span class="tag tag-feature">Feature</span><span class="tag tag-perm">change_requests</span>
+      <ul class="feature-list">
+        <li><strong>Change Request Inbox</strong> — <span class="route">/hr/hr/requests</span> — Employee-submitted profile change requests; filter by status; approve or reject</li>
+      </ul>
+
+      <h3 id="hr-career">14. Career Paths</h3>
+      <span class="tag tag-feature">Feature</span><span class="tag tag-perm">career_paths</span><span class="tag tag-stub">Placeholder</span>
+      <ul class="feature-list">
+        <li><strong>Career Paths (HR)</strong> — <span class="route">/hr/hr/career</span> — UI placeholder; full career path management pending migration</li>
+      </ul>
+
+      <h3 id="hr-manage">15. User Permissions (Manage HR)</h3>
+      <span class="tag tag-feature">Feature</span><span class="tag tag-perm">manage_hr</span>
+      <ul class="feature-list">
+        <li><strong>User Permissions Page</strong> — <span class="route">/hr/hr/manage-hr</span> — Grant dashboard access and module permissions</li>
+        <li><strong>Assign to Existing Employee</strong> — Select employee, view read-only profile, set dashboard email/password, assign granular permissions</li>
+        <li><strong>Create External User</strong> — Create outsider (non-employee) with name, phone, dashboard email, password, permissions</li>
+        <li><strong>Permission Presets</strong> — Full Access and Limited Access quick-select</li>
+        <li><strong>Granular Permission Checkboxes</strong> — All 38 permission keys individually assignable</li>
+        <li><strong>Users With Permissions Table</strong> — Filter by name, email, module; view/edit/delete HR users</li>
+        <li><strong>View HR User</strong> — <span class="route">/hr/hr/view-hr?id=</span> — View HR administrator profile and permissions</li>
+        <li><strong>Update HR User</strong> — <span class="route">/hr/hr/update-hr?id=</span> — Edit HR user credentials and permissions</li>
+        <li><strong>HR User Actions</strong> — POST — Activate, deactivate, or delete HR user accounts</li>
+        <li><strong>Employee Permission Profile API</strong> — JSON — Load employee data for permission form</li>
+      </ul>
+
+      <h3>16. LMS Administration (from HR)</h3>
+      <span class="tag tag-feature">Feature</span><span class="tag tag-perm">lms</span>
+      <ul class="feature-list">
+        <li><strong>LMS Admin Redirect</strong> — <span class="route">/hr/hr/lms</span> — Super admin redirect to LMS teacher portal</li>
+        <li><strong>Open LMS (sidebar)</strong> — <span class="route">/lms/portal/teacher</span> — Teacher LMS dashboard</li>
+      </ul>
+    </section>
+
+    <section id="employee-portal">
+      <h2>Employee Portal Module</h2>
+      <p>Base route: <span class="route">/employee/employee/dashboard</span>. Access: <code>role = employee</code>. Terminated employees are locked to Dashboard + Profile only.</p>
+
+      <h3>Sidebar Navigation</h3>
+      <table>
+        <thead><tr><th>Nav Item</th><th>Sub-items</th><th>Route</th></tr></thead>
+        <tbody>
+          <tr><td>Dashboard</td><td>—</td><td><span class="route">/employee/employee/dashboard</span></td></tr>
+          <tr><td>LMS</td><td>—</td><td><span class="route">/employee/employee/lms</span> → LMS teacher portal</td></tr>
+          <tr><td>My Development</td><td>—</td><td><span class="route">/employee/employee/career</span></td></tr>
+          <tr><td>My Profile</td><td>—</td><td><span class="route">/employee/employee/profile</span></td></tr>
+          <tr><td>Attendance and Leaving</td><td>My Attendance, My Leave Requests, Request Leave</td><td><span class="route">/employee/employee/attendance</span></td></tr>
+          <tr><td>Survey and Evaluations</td><td>—</td><td><span class="route">/employee/employee/survey-display</span></td></tr>
+        </tbody>
+      </table>
+
+      <h3>All Employee Portal Features</h3>
+      <ul class="feature-list">
+        <li><strong>Employee Dashboard</strong> — Pending surveys/evaluations, quick action cards, announcements</li>
+        <li><strong>My Profile</strong> — View personal info, department, manager, job title, contact details</li>
+        <li><strong>Submit Change Request</strong> — <span class="route">/employee/employee/request</span> — Request profile data changes for HR approval</li>
+        <li><strong>Survey &amp; Evaluation Inbox</strong> — Combined pending surveys and evaluations</li>
+        <li><strong>Respond to Survey</strong> — <span class="route">/employee/survey/respond?id=</span> — Complete assigned survey</li>
+        <li><strong>Respond to Evaluation</strong> — <span class="route">/employee/evaluation/respond?id=</span> — Complete assigned evaluation</li>
+        <li><strong>Attendance Hub</strong> — <span class="route">/employee/employee/attendance</span> — Navigation to attendance sub-features</li>
+        <li><strong>My Attendance</strong> — <span class="route">/employee/employee/my-attendance</span> — Clock in/out, view history, monthly report</li>
+        <li><strong>Clock In</strong> — POST — Record arrival time</li>
+        <li><strong>Clock Out</strong> — POST — Record departure time</li>
+        <li><strong>My Leave Requests</strong> — <span class="route">/employee/employee/my-leave-requests</span> — View leave history and status</li>
+        <li><strong>Request Leave</strong> — <span class="route">/employee/employee/request-leave</span> — Submit new leave request</li>
+        <li><strong>My Development (Career)</strong> — <span class="route">/employee/employee/career</span> — Career paths placeholder UI</li>
+        <li><strong>LMS Access</strong> — Redirect to LMS teacher portal (teachers only)</li>
+        <li><strong>Switch to HR Portal</strong> — Via <span class="route">/site/employee-portal</span> toggle (HR users with employee record)</li>
+      </ul>
+    </section>
+
+    <section id="lms-portal">
+      <h2>LMS Portal Module</h2>
+      <p>Base route: <span class="route">/lms/portal/index</span>. Learning Management System for students and teachers.</p>
+
+      <h3>Student Sidebar Features</h3>
+      <ul class="feature-list">
+        <li><strong>Student Dashboard</strong> — <span class="route">/lms/portal/student</span></li>
+        <li><strong>Learning Library</strong> — <span class="route">/lms/lms/index</span> — Browse courses and materials</li>
+        <li><strong>My Profile</strong> — <span class="route">/lms/student-affairs/profile</span></li>
+        <li><strong>My Health Record</strong> — <span class="route">/lms/student-affairs/health-record</span></li>
+        <li><strong>My Attendance</strong> — <span class="route">/lms/student-affairs/attendance-log</span></li>
+        <li><strong>My Marks</strong> — <span class="route">/lms/student-affairs/marks-log</span></li>
+        <li><strong>Subjects</strong> — <span class="route">/lms/subjects/index</span></li>
+        <li><strong>My Schedule</strong> — <span class="route">/lms/timetable/my-schedule</span></li>
+      </ul>
+
+      <h3>Teacher Sidebar Features</h3>
+      <ul class="feature-list">
+        <li><strong>Teacher Dashboard</strong> — <span class="route">/lms/portal/teacher</span></li>
+        <li><strong>Content Library</strong> — <span class="route">/lms/lms/index</span> — Upload and manage learning materials</li>
+        <li><strong>Upload Content</strong> — <span class="route">/lms/lms/upload</span></li>
+        <li><strong>View Course/Material</strong> — <span class="route">/lms/lms/view-course?id=</span></li>
+        <li><strong>Student Registry (Teacher-scoped)</strong> — <span class="route">/lms/student-affairs/students</span></li>
+        <li><strong>View Student</strong> — <span class="route">/lms/student-affairs/view?id=</span></li>
+        <li><strong>Infrastructure Hierarchy</strong> — <span class="route">/lms/hierarchy/index</span> — Section management for dept leaders</li>
+        <li><strong>Section View</strong> — <span class="route">/lms/hierarchy/section?id=</span></li>
+        <li><strong>Create/Update Section</strong> — Assign teachers, materials, students</li>
+        <li><strong>Subjects (Teacher)</strong> — <span class="route">/lms/subjects/index</span> — Role-based subject view</li>
+        <li><strong>Create Subject</strong> — <span class="route">/lms/subjects/create</span> (dept leaders)</li>
+        <li><strong>Timetable Builder</strong> — <span class="route">/lms/timetable/index</span> — Build section schedules (HR/dept managers)</li>
+        <li><strong>My Schedule (Teacher)</strong> — <span class="route">/lms/timetable/my-schedule</span></li>
+        <li><strong>Save Timetable Grid/Slot</strong> — POST — Persist timetable data</li>
+        <li><strong>Section Attendance (LMS)</strong> — <span class="route">/lms/attendance/index</span> — Take daily student section attendance</li>
+        <li><strong>Take Attendance</strong> — <span class="route">/lms/attendance/take?section_id=</span></li>
+        <li><strong>Attendance History</strong> — <span class="route">/lms/attendance/history?section_id=</span></li>
+        <li><strong>My Classes Hub</strong> — <span class="route">/lms/my-classes/index</span></li>
+        <li><strong>Enter Section Marks</strong> — <span class="route">/lms/my-classes/marks?section_id=&amp;material_id=</span></li>
+        <li><strong>Save Marks</strong> — POST</li>
+        <li><strong>Exams View</strong> — <span class="route">/lms/my-classes/exams?section_id=</span></li>
+        <li><strong>Course Operations</strong> — POST — Section course ops</li>
+        <li><strong>LMS Login/Logout</strong> — <span class="route">/lms/portal/login</span></li>
+      </ul>
+    </section>
+
+    <section id="recruitment-portal">
+      <h2>Recruitment Portals</h2>
+
+      <h3>Applicant Portal</h3>
+      <span class="tag tag-portal">Applicant Session</span>
+      <ul class="feature-list">
+        <li><strong>Applicant Login</strong> — <span class="route">/recruitment/applicant/login</span></li>
+        <li><strong>Applicant Registration</strong> — <span class="route">/recruitment/applicant/register</span></li>
+        <li><strong>Applicant Dashboard</strong> — <span class="route">/recruitment/applicant/dashboard</span></li>
+        <li><strong>Apply to Job</strong> — POST — Submit application with resume</li>
+        <li><strong>Applicant Profile</strong> — <span class="route">/recruitment/applicant/profile</span> — Edit profile and upload resume</li>
+        <li><strong>Application Status</strong> — <span class="route">/recruitment/applicant/status</span> — Track all applications</li>
+        <li><strong>Withdraw Application</strong> — POST</li>
+        <li><strong>Download Own Resume</strong> — GET</li>
+        <li><strong>Applicant Logout</strong> — POST</li>
+      </ul>
+
+      <h3>Recruiter Portal (Standalone)</h3>
+      <span class="tag tag-portal">Recruiter Session</span>
+      <ul class="feature-list">
+        <li><strong>Recruiter Login</strong> — <span class="route">/recruitment/recruiter/login</span></li>
+        <li><strong>Recruiter Dashboard</strong> — <span class="route">/recruitment/recruiter/dashboard</span></li>
+        <li><strong>Recruiter Applications</strong> — <span class="route">/recruitment/recruiter/applications</span></li>
+        <li><strong>Convert Applicant</strong> — POST — Hire applicant</li>
+        <li><strong>Job CRUD (Recruiter)</strong> — <span class="route">/recruitment/job/index</span>, create, close, delete</li>
+        <li><strong>Recruiter Logout</strong> — POST</li>
+      </ul>
+    </section>
+
+    <section id="shared-modules">
+      <h2>Shared Modules &amp; Services</h2>
+
+      <h3>Document Module</h3>
+      <ul class="feature-list">
+        <li><strong>Upload Document</strong> — <span class="route">/document/document/upload</span> — Secure file upload</li>
+        <li><strong>View/Download Document</strong> — <span class="route">/document/document/view?id=</span></li>
+      </ul>
+
+      <h3>Dashboard Module (Alternate Analytics)</h3>
+      <ul class="feature-list">
+        <li><strong>Analytics Dashboard</strong> — <span class="route">/dashboard/dashboard/index</span> — Parallel analytics snapshot with navigation cards</li>
+      </ul>
+
+      <h3>Common Employee Domain (Models &amp; Services)</h3>
+      <p>Shared business logic used across all portals:</p>
+      <div class="grid-2">
+        <div class="card">
+          <h4>Core Models</h4>
+          <ul>
+            <li>Employee</li>
+            <li>Department (org)</li>
+            <li>EmployeeChangeRequest</li>
+            <li>EmployeeAttendance</li>
+            <li>EmployeeLeaveRequest</li>
+            <li>AttendanceSettings</li>
+            <li>AttendanceOffDayPolicy</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h4>School Infrastructure Models</h4>
+          <ul>
+            <li>SchoolDepartment</li>
+            <li>SchoolGrade</li>
+            <li>SchoolSection</li>
+            <li>SchoolSubject</li>
+            <li>SchoolStudent</li>
+            <li>StudentHealthFile</li>
+            <li>StudentClinicVisit</li>
+            <li>StudentDocument</li>
+            <li>StudentSibling</li>
+            <li>SectionMaterial</li>
+            <li>SectionStudent</li>
+            <li>StudentAttendance (LMS)</li>
+            <li>StudentMarks</li>
+            <li>TimetableSlot</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h4>Services</h4>
+          <ul>
+            <li>AttendanceConfigurationService</li>
+            <li>AttendanceReportService</li>
+            <li>EmployeeAttendanceService</li>
+            <li>EmployeeLeaveService</li>
+            <li>SchoolSectionManagementService</li>
+            <li>SchoolSubjectService</li>
+            <li>TimetableService</li>
+            <li>StudentMarksService</li>
+            <li>StudentHealthService</li>
+            <li>StudentPortalEmailService</li>
+            <li>FinanceParentEnrollmentService</li>
+            <li>TimezoneResolver</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h4>Finance Domain</h4>
+          <ul>
+            <li>FinanceAccount</li>
+            <li>FinanceJournalEntry</li>
+            <li>FinanceJournalEntryLine</li>
+            <li>FinanceAccountParentProfile</li>
+            <li>FinanceAccountParentChild</li>
+            <li>AccountManagementService</li>
+            <li>JournalEntryService</li>
+            <li>FinanceReportService (Trial Balance, P&amp;L, Balance Sheet)</li>
+            <li>ParentProfileService</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="auth">
+      <h2>Authentication &amp; Site Features</h2>
+      <table>
+        <thead><tr><th>Feature</th><th>Route</th><th>Description</th></tr></thead>
+        <tbody>
+          <tr><td>Home Redirect</td><td><span class="route">/site/index</span></td><td>Redirects to appropriate portal based on role</td></tr>
+          <tr><td>Login</td><td><span class="route">/site/login</span></td><td>Email/password login; optional "access employee portal" for HR users</td></tr>
+          <tr><td>Logout</td><td><span class="route">/site/logout</span></td><td>End session</td></tr>
+          <tr><td>Employee Portal Switch</td><td><span class="route">/site/employee-portal</span></td><td>HR user switches to employee self-service view</td></tr>
+          <tr><td>Check HR Access</td><td><span class="route">/site/check-hr</span></td><td>JSON API: does email have HR access?</td></tr>
+          <tr><td>Admin Dashboard</td><td><span class="route">/site/admin-dashboard</span></td><td>Requires manage_hr permission</td></tr>
+          <tr><td>Signup</td><td><span class="route">/site/signup</span></td><td>User registration</td></tr>
+          <tr><td>Contact</td><td><span class="route">/site/contact</span></td><td>Contact form</td></tr>
+          <tr><td>About</td><td><span class="route">/site/about</span></td><td>About page</td></tr>
+          <tr><td>Request Password Reset</td><td><span class="route">/site/request-password-reset</span></td><td>Forgot password flow</td></tr>
+          <tr><td>Reset Password</td><td><span class="route">/site/reset-password</span></td><td>Set new password via token</td></tr>
+          <tr><td>Verify Email</td><td><span class="route">/site/verify-email</span></td><td>Email verification</td></tr>
+          <tr><td>Resend Verification</td><td><span class="route">/site/resend-verification-email</span></td><td>Resend verification email</td></tr>
+          <tr><td>Auth Login (alternate)</td><td><span class="route">/auth/login</span></td><td>Alternate auth endpoints</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="maturity">
+      <h2>Feature Maturity Notes</h2>
+      <table>
+        <thead><tr><th>Feature</th><th>Status</th><th>Notes</th></tr></thead>
+        <tbody>
+          <tr><td>Career Paths (HR &amp; Employee)</td><td><span class="tag tag-stub">Placeholder</span></td><td>UI exists; full career path management pending</td></tr>
+          <tr><td>LMS Admin Card on HR Dashboard</td><td>Super Admin only</td><td>Regular HR users with lms permission use sidebar link</td></tr>
+          <tr><td>Backend Admin</td><td>Shell only</td><td>Stock Yii backend — no business features</td></tr>
+          <tr><td>Legacy_Code/</td><td>Reference only</td><td>Pre-Yii PHP HRMS/RMS — not wired to current routes</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+  </main>
+</div>
+
+<footer>
+  CultureHR (HRMS-NEW) — System Features Reference — Generated from codebase inventory
+</footer>
+
+</body>
+</html>

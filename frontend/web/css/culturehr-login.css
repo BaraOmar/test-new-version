@@ -1,0 +1,263 @@
+/* CultureHR login — shared shell; HR (plum) vs LMS (teal) themes */
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow: hidden;
+}
+
+.culturehr-login-page {
+    /* HR defaults */
+    --ch-bg: #4a154b;
+    --ch-bg-deep: #3d113e;
+    --ch-heading: #4a154b;
+    --ch-brand: #4a154b;
+    --ch-cta: #f26522;
+    --ch-cta-hover: #e85a18;
+    --ch-link: #2563eb;
+    --ch-focus: rgba(242, 101, 34, 0.55);
+    --ch-focus-ring: rgba(242, 101, 34, 0.12);
+    --ch-input-bg: #eef3fb;
+    --ch-input-border: #e8ecf4;
+    --ch-label: #6b7280;
+    --ch-muted: #9ca3af;
+    --ch-card-radius: 24px;
+    --ch-control-radius: 12px;
+
+    height: 100%;
+    height: 100dvh;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px 20px;
+    background:
+        radial-gradient(1200px 600px at 12% 18%, rgba(255, 255, 255, 0.08), transparent 55%),
+        radial-gradient(900px 500px at 88% 82%, rgba(0, 0, 0, 0.18), transparent 50%),
+        var(--ch-bg);
+    font-family: "Segoe UI", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+}
+
+/* LMS — same card texture, distinct education palette */
+.culturehr-login-page[data-portal="lms"] {
+    --ch-bg: #0f4c5c;
+    --ch-bg-deep: #0a353f;
+    --ch-heading: #0f4c5c;
+    --ch-brand: #0d7377;
+    --ch-cta: #14919b;
+    --ch-cta-hover: #0d7377;
+    --ch-link: #0d7377;
+    --ch-focus: rgba(20, 145, 155, 0.55);
+    --ch-focus-ring: rgba(20, 145, 155, 0.14);
+    --ch-input-bg: #eef8f8;
+    --ch-input-border: #d7ecec;
+    background:
+        radial-gradient(1100px 560px at 18% 12%, rgba(255, 255, 255, 0.1), transparent 52%),
+        radial-gradient(800px 480px at 92% 88%, rgba(0, 0, 0, 0.22), transparent 48%),
+        linear-gradient(160deg, #0f4c5c 0%, #126872 48%, #0a353f 100%);
+}
+
+.culturehr-login-card {
+    width: 100%;
+    max-width: 400px;
+    flex-shrink: 0;
+    background: #fff;
+    border-radius: var(--ch-card-radius);
+    box-shadow: 0 24px 64px rgba(0, 0, 0, 0.28);
+    padding: 40px 36px 32px;
+}
+
+.culturehr-login-page[data-portal="lms"] .culturehr-login-card {
+    border-top: 4px solid var(--ch-cta);
+    box-shadow: 0 24px 64px rgba(10, 53, 63, 0.35);
+}
+
+.culturehr-login-header {
+    margin-bottom: 28px;
+}
+
+.culturehr-login-brand {
+    margin: 0 0 10px;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ch-brand);
+}
+
+.culturehr-login-page[data-portal="lms"] .culturehr-login-brand {
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 8px;
+    background: rgba(20, 145, 155, 0.1);
+    letter-spacing: 0.06em;
+}
+
+.culturehr-login-heading {
+    margin: 0 0 6px;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 1.15;
+    color: var(--ch-heading);
+    letter-spacing: -0.02em;
+}
+
+.culturehr-login-page[data-portal="lms"] .culturehr-login-heading {
+    font-family: "Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif;
+}
+
+.culturehr-login-tagline {
+    margin: 0;
+    font-size: 15px;
+    color: var(--ch-muted);
+    font-weight: 400;
+}
+
+.culturehr-login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.culturehr-login-field label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--ch-label);
+}
+
+.culturehr-login-field input {
+    width: 100%;
+    box-sizing: border-box;
+    border: 1px solid var(--ch-input-border);
+    border-radius: var(--ch-control-radius);
+    padding: 14px 16px;
+    font-size: 15px;
+    color: #111827;
+    background: var(--ch-input-bg);
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.culturehr-login-field input::placeholder {
+    color: #a0aec0;
+}
+
+.culturehr-login-field input:focus {
+    outline: none;
+    border-color: var(--ch-focus);
+    box-shadow: 0 0 0 3px var(--ch-focus-ring);
+    background: #fff;
+}
+
+.culturehr-login-options {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 12px;
+    margin-top: -4px;
+}
+
+.culturehr-login-forgot {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--ch-link);
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.culturehr-login-forgot:hover {
+    text-decoration: underline;
+}
+
+.culturehr-login-alert {
+    margin: 0;
+    padding: 12px 14px;
+    border-radius: var(--ch-control-radius);
+    font-size: 14px;
+    line-height: 1.4;
+}
+
+.culturehr-login-alert--error {
+    background: #fef2f2;
+    color: #b91c1c;
+    border: 1px solid #fecaca;
+}
+
+.culturehr-login-alert--success {
+    background: #ecfdf5;
+    color: #047857;
+    border: 1px solid #a7f3d0;
+}
+
+.culturehr-login-submit {
+    width: 100%;
+    border: none;
+    border-radius: var(--ch-control-radius);
+    padding: 15px 16px;
+    margin-top: 4px;
+    font-size: 16px;
+    font-weight: 700;
+    color: #fff;
+    background: var(--ch-cta);
+    cursor: pointer;
+    transition: background 0.15s ease, transform 0.1s ease;
+}
+
+.culturehr-login-submit:hover {
+    background: var(--ch-cta-hover);
+}
+
+.culturehr-login-submit:active {
+    transform: scale(0.99);
+}
+
+.culturehr-login-switch-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    box-sizing: border-box;
+    margin-top: 20px;
+    padding: 14px 16px;
+    border: 1px solid #e5e7eb;
+    border-radius: var(--ch-control-radius);
+    background: #fff;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--ch-heading);
+    text-decoration: none;
+    transition: background 0.15s ease, border-color 0.15s ease;
+}
+
+.culturehr-login-switch-btn:hover {
+    background: #f8fafc;
+    border-color: #cbd5e1;
+    text-decoration: none;
+    color: var(--ch-heading);
+}
+
+.culturehr-login-page[data-portal="lms"] .culturehr-login-switch-btn {
+    background: #f3fafb;
+    border-color: #cce7ea;
+    color: var(--ch-heading);
+}
+
+.culturehr-login-page[data-portal="lms"] .culturehr-login-switch-btn:hover {
+    background: #e7f5f6;
+    border-color: #9fd0d5;
+    color: var(--ch-heading);
+}
+
+.culturehr-login-switch-btn svg {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+    color: var(--ch-heading);
+}

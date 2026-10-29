@@ -1,0 +1,239 @@
+main > .container, main > .container-fluid
+{
+    padding: 70px 15px 20px;
+}
+
+.footer {
+    background-color: #f5f5f5;
+    font-size: .9em;
+    height: 60px;
+}
+
+.footer > .container, .footer > .container-fluid {
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+.not-set {
+    color: #c55;
+    font-style: italic;
+}
+
+/* add sorting icons to gridview sort links */
+a.asc:after, a.desc:after {
+    content: '';
+    left: 3px;
+    display: inline-block;
+    width: 0;
+    height: 0;
+    border: solid 5px transparent;
+    margin: 4px 4px 2px 4px;
+    background: transparent;
+}
+
+a.asc:after {
+    border-bottom: solid 7px #212529;
+    border-top-width: 0;
+}
+
+a.desc:after {
+    border-top: solid 7px #212529;
+    border-bottom-width: 0;
+}
+
+.grid-view th,
+.grid-view td:last-child {
+    white-space: nowrap;
+}
+
+.grid-view .filters input,
+.grid-view .filters select {
+    min-width: 50px;
+}
+
+.hint-block {
+    display: block;
+    margin-top: 5px;
+    color: #999;
+}
+
+.error-summary {
+    color: #a94442;
+    background: #fdf7f7;
+    border-left: 3px solid #eed3d7;
+    padding: 10px 20px;
+    margin: 0 0 15px 0;
+}
+
+/* align the logout "link" (button in form) of the navbar */
+.navbar form > button.logout {
+    padding-top: 7px;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+@media(max-width:767px) {
+    .navbar form > button.logout {
+        display:block;
+        text-align: left;
+        width: 100%;
+        padding: 10px 0;
+    }
+}
+
+.navbar form > button.logout:focus,
+.navbar form > button.logout:hover {
+    text-decoration: none;
+    color: rgba(255, 255, 255, 0.75);
+}
+
+.navbar form > button.logout:focus {
+    outline: none;
+}
+
+/* style breadcrumb widget as in previous bootstrap versions */
+.breadcrumb {
+    background-color: var(--bs-gray-200);
+    border-radius: .25rem;
+    padding: .75rem 1rem;
+}
+
+.breadcrumb-item > a
+{
+    text-decoration: none;
+}
+
+.print-only {
+    display: none !important;
+}
+
+@media print {
+    @page {
+        size: A4;
+        margin: 12mm;
+    }
+
+    * {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+        box-shadow: none !important;
+        text-shadow: none !important;
+    }
+
+    html,
+    body {
+        width: auto !important;
+        height: auto !important;
+        min-height: 0 !important;
+        overflow: visible !important;
+        background: #ffffff !important;
+        color: #111827 !important;
+        font-size: 10.5pt !important;
+        line-height: 1.45 !important;
+    }
+
+    header,
+    .navbar,
+    .footer,
+    .breadcrumb,
+    .app-sidebar,
+    .app-topbar,
+    .print-hide,
+    [data-print-hide="true"] {
+        display: none !important;
+    }
+
+    .print-only {
+        display: block !important;
+    }
+
+    main,
+    .container,
+    .container-fluid {
+        width: 100% !important;
+        max-width: none !important;
+        height: auto !important;
+        overflow: visible !important;
+        background: #ffffff !important;
+        padding: 0 !important;
+        margin: 0 !important;
+    }
+
+    a {
+        color: inherit !important;
+        text-decoration: none !important;
+    }
+
+    .card,
+    .hrms-card,
+    .finance-card {
+        break-inside: avoid;
+        page-break-inside: avoid;
+        background: #ffffff !important;
+        border: 1px solid #d1d5db !important;
+        border-radius: 6px !important;
+    }
+
+    .print-report-header {
+        display: flex !important;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 16px;
+        padding: 0 0 10mm !important;
+        margin: 0 0 8mm !important;
+        border-bottom: 2px solid #111827;
+    }
+
+    .print-report-header h1 {
+        margin: 0 0 2mm;
+        font-size: 20pt;
+        font-weight: 900;
+        color: #111827;
+    }
+
+    .print-report-header p {
+        margin: 0;
+        color: #4b5563;
+        font-size: 9.5pt;
+    }
+
+    .print-report-brand {
+        font-size: 11pt;
+        font-weight: 800;
+        color: #111827;
+        white-space: nowrap;
+    }
+
+    table {
+        width: 100% !important;
+        border-collapse: collapse !important;
+        border-spacing: 0 !important;
+        page-break-inside: auto;
+    }
+
+    thead {
+        display: table-header-group;
+    }
+
+    tfoot {
+        display: table-footer-group;
+    }
+
+    tr {
+        break-inside: avoid;
+        page-break-inside: avoid;
+    }
+
+    th,
+    td {
+        border: 1px solid #d1d5db !important;
+        padding: 6px 8px !important;
+        vertical-align: top !important;
+        color: #111827 !important;
+        background: #ffffff !important;
+    }
+
+    th {
+        background: #f3f4f6 !important;
+        font-weight: 800 !important;
+    }
+}

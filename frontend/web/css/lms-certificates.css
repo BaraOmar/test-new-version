@@ -1,0 +1,558 @@
+/* Student Certificates — ported from Odoo CultureHR LMS */
+
+.o_sch_cert.lms-portal-page {
+  min-height: calc(100vh - 72px);
+  background: #f4f6f9;
+}
+
+.o_sch_cert .lms-portal-container {
+  width: 100%;
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 20px 24px 40px;
+  box-sizing: border-box;
+}
+
+.o_sch_cert.o_sch_cert--manage .lms-portal-container {
+  max-width: 1180px;
+}
+
+.o_sch_cert_header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.o_sch_cert_header .lms-portal-eyebrow {
+  margin: 0 0 4px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #64748b;
+}
+
+.o_sch_cert_header h1 {
+  margin: 0;
+  font-size: 1.55rem;
+  font-weight: 800;
+  color: #1e293b;
+  line-height: 1.2;
+}
+
+.o_sch_cert_header .lms-portal-subtitle {
+  margin: 6px 0 0;
+  color: #64748b;
+  font-size: 0.92rem;
+  max-width: 36rem;
+}
+
+.o_sch_cert_header_actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-shrink: 0;
+  padding-top: 0.15rem;
+}
+
+.o_sch_cert_card {
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 14px;
+  padding: 1rem 1.15rem;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
+  margin-bottom: 0.9rem;
+}
+
+.o_sch_cert_filters {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  gap: 0.85rem 1rem;
+}
+
+.o_sch_cert_filters--student {
+  align-items: end;
+  justify-content: space-between;
+}
+
+.o_sch_cert_filter_field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  min-width: 0;
+  flex: 1 1 180px;
+}
+
+.o_sch_cert_filters--student .o_sch_cert_filter_field {
+  flex: 1 1 280px;
+  max-width: 420px;
+}
+
+.o_sch_cert_label {
+  display: block;
+  margin: 0;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #6b7280;
+}
+
+.o_sch_cert_filter_grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.85rem;
+  width: 100%;
+}
+
+@media (max-width: 1100px) {
+  .o_sch_cert_filter_grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.o_sch_cert_scope_only,
+.o_sch_cert_filters .lms-teacher-select {
+  width: 100%;
+}
+
+.o_sch_cert_layout {
+  display: grid;
+  grid-template-columns: minmax(240px, 300px) minmax(0, 1fr);
+  gap: 0.9rem;
+  align-items: start;
+}
+
+.o_sch_cert_rank h2,
+.o_sch_cert_preview h2 {
+  margin: 0;
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: #1e293b;
+}
+
+.o_sch_cert_preview {
+  padding: 0.85rem;
+}
+
+.o_sch_cert_preview--student {
+  padding: 0;
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+  margin-bottom: 0;
+}
+
+.o_sch_cert_preview--busy {
+  opacity: 0.55;
+  pointer-events: none;
+}
+
+.o_sch_cert_help {
+  margin: 0.35rem 0 0.85rem;
+  color: #6b7280;
+  font-size: 0.85rem;
+}
+
+.o_sch_cert_empty {
+  color: #6b7280;
+  font-size: 0.9rem;
+  padding: 1rem 0.25rem;
+}
+
+.o_sch_cert_rank_list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  max-height: 640px;
+  overflow: auto;
+}
+
+.o_sch_cert_rank_btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  background: #fff;
+  padding: 0.65rem 0.75rem;
+  text-align: left;
+  cursor: pointer;
+}
+
+.o_sch_cert_rank_list li.is-active .o_sch_cert_rank_btn,
+.o_sch_cert_rank_btn:hover {
+  border-color: #1e3a5f;
+  background: #f8fafc;
+}
+
+.o_sch_cert_rank_num {
+  width: 1.8rem;
+  height: 1.8rem;
+  border-radius: 999px;
+  background: #1e3a5f;
+  color: #fff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.78rem;
+  font-weight: 800;
+  flex-shrink: 0;
+}
+
+.o_sch_cert_rank_body {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  flex: 1;
+}
+
+.o_sch_cert_rank_body strong {
+  font-size: 0.9rem;
+  color: #111827;
+}
+
+.o_sch_cert_rank_body span {
+  font-size: 0.75rem;
+  color: #9ca3af;
+}
+
+.o_sch_cert_rank_avg {
+  font-weight: 800;
+  color: #1e3a5f;
+  font-size: 0.92rem;
+}
+
+.o_sch_cert_doc {
+  border: 1px solid #dbe3ee;
+  border-radius: 16px;
+  padding: 1.35rem 1.4rem 1.2rem;
+  background:
+    linear-gradient(180deg, rgba(30, 58, 95, 0.045), transparent 140px),
+    #fff;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.05);
+}
+
+.o_sch_cert_doc_head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+  padding-bottom: 1rem;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid #e8eef5;
+}
+
+.o_sch_cert_school {
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: #1e3a5f;
+  letter-spacing: 0.02em;
+}
+
+.o_sch_cert_tagline {
+  margin-top: 0.2rem;
+  font-size: 0.7rem;
+  color: #64748b;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.o_sch_cert_doc_title {
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: #1e3a5f;
+  text-align: right;
+}
+
+.o_sch_cert_doc_meta {
+  margin-top: 0.3rem;
+  color: #64748b;
+  font-size: 0.82rem;
+  text-align: right;
+  line-height: 1.35;
+  max-width: 22rem;
+  margin-left: auto;
+}
+
+.o_sch_cert_student_box {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 0.35rem 1rem;
+  align-items: center;
+  background: #f1f5f9;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 0.95rem 1.05rem;
+  margin-bottom: 1rem;
+}
+
+.o_sch_cert_student_main {
+  min-width: 0;
+}
+
+.o_sch_cert_student_name {
+  font-size: 1.08rem;
+  font-weight: 800;
+  color: #0f172a;
+}
+
+.o_sch_cert_student_class {
+  margin-top: 0.2rem;
+  color: #475569;
+  font-weight: 600;
+  font-size: 0.92rem;
+}
+
+.o_sch_cert_student_code {
+  color: #64748b;
+  font-size: 0.82rem;
+  text-align: right;
+  line-height: 1.4;
+}
+
+.o_sch_cert_table_wrap {
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.o_sch_cert_table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+.o_sch_cert_table th {
+  background: #1e3a5f;
+  color: #fff;
+  text-align: left;
+  padding: 0.72rem 0.85rem;
+  font-size: 0.7rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+.o_sch_cert_table td {
+  padding: 0.72rem 0.85rem;
+  border-bottom: 1px solid #e8eef5;
+  color: #334155;
+  vertical-align: middle;
+}
+
+.o_sch_cert_table tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+.o_sch_cert_table tbody tr:nth-child(even) td {
+  background: #f8fafc;
+}
+
+.o_sch_cert_subject {
+  font-weight: 700;
+  color: #1e293b;
+}
+
+.o_sch_cert_letter {
+  display: inline-flex;
+  min-width: 1.75rem;
+  justify-content: center;
+  font-weight: 800;
+  color: #1e3a5f;
+}
+
+.o_sch_cert_letter.is-b {
+  color: #c2410c;
+}
+
+.o_sch_cert_letter.is-other {
+  color: #64748b;
+}
+
+.o_sch_cert_remark {
+  color: #64748b;
+}
+
+.o_sch_cert_summary {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
+.o_sch_cert_metric {
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 0.9rem 1rem;
+  background: #fff;
+}
+
+.o_sch_cert_metric--accent {
+  background: #f8fafc;
+  border-color: #cbd5e1;
+}
+
+.o_sch_cert_metric span {
+  display: block;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #64748b;
+  margin-bottom: 0.3rem;
+  font-weight: 700;
+}
+
+.o_sch_cert_metric strong {
+  font-size: 1.2rem;
+  color: #0f172a;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+}
+
+.o_sch_cert_readonly_note {
+  margin: 0.95rem 0 0;
+  color: #94a3b8;
+  font-size: 0.8rem;
+}
+
+.o_sch_cert .lms-teacher-select {
+  width: 100%;
+  border: 1px solid #ddd6e8;
+  border-radius: 10px;
+  padding: 10px 12px;
+  font-size: 0.95rem;
+  color: #1e293b;
+  background: #fff;
+  box-sizing: border-box;
+  font-family: inherit;
+}
+
+.o_sch_cert .lms-teacher-select:focus {
+  outline: none;
+  border-color: #f16a2d;
+  box-shadow: 0 0 0 3px rgba(241, 106, 45, 0.18);
+  background: #fff;
+}
+
+.o_sch_cert .lms-teacher-select:disabled {
+  background: #f8f7fb;
+  color: #9ca3af;
+  cursor: not-allowed;
+}
+
+.o_sch_cert .lms-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: none;
+  border-radius: 10px;
+  padding: 9px 16px;
+  font-size: 0.84rem;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: inherit;
+  line-height: 1.2;
+  text-decoration: none;
+  transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+}
+
+.o_sch_cert .lms-btn--orange {
+  background: #3d2461;
+  color: #fff;
+}
+
+.o_sch_cert .lms-btn--orange:hover {
+  background: #2f1b4c;
+  color: #fff;
+}
+
+.o_sch_cert .lms-btn .material-symbols-outlined {
+  font-size: 1.05rem;
+}
+
+.lms-portal-loading {
+  color: #64748b;
+  font-size: 0.95rem;
+  padding: 1.5rem 0.25rem;
+}
+
+.lms-cert-toast {
+  position: fixed;
+  top: 18px;
+  right: 18px;
+  z-index: 80;
+  min-width: 260px;
+  max-width: 360px;
+  padding: 12px 14px;
+  border-radius: 10px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  box-shadow: 0 10px 30px rgba(47, 27, 76, 0.18);
+}
+
+.lms-cert-toast--danger {
+  background: #fef2f2;
+  color: #991b1b;
+  border: 1px solid #fecaca;
+}
+
+.lms-cert-toast--warning {
+  background: #fff7ed;
+  color: #9a3412;
+  border: 1px solid #f16a2d;
+}
+
+@media (max-width: 960px) {
+  .o_sch_cert .lms-portal-container {
+    padding: 16px 14px 32px;
+  }
+
+  .o_sch_cert_header {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .o_sch_cert_header_actions {
+    width: 100%;
+  }
+
+  .o_sch_cert_header_actions .lms-btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .o_sch_cert_filter_grid,
+  .o_sch_cert_layout,
+  .o_sch_cert_summary,
+  .o_sch_cert_doc_head,
+  .o_sch_cert_student_box {
+    grid-template-columns: 1fr;
+    display: grid;
+  }
+
+  .o_sch_cert_doc_title,
+  .o_sch_cert_doc_meta,
+  .o_sch_cert_student_code {
+    text-align: left;
+    margin-left: 0;
+    max-width: none;
+  }
+
+  .o_sch_cert_filters--student .o_sch_cert_filter_field {
+    max-width: none;
+    flex: 1 1 100%;
+  }
+
+  .o_sch_cert_table_wrap {
+    overflow-x: auto;
+  }
+}

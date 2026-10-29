@@ -1,0 +1,6 @@
+# Secrets - never commit
+.env
+
+# Logs and rate limit data
+logs/*.log
+logs/ratelimit_*.json

@@ -1,0 +1,23 @@
+# Security - disable directory listing, block sensitive files
+Options -Indexes -FollowSymLinks
+
+<Files ".env">
+    <IfModule mod_authz_core.c>
+        Require all denied
+    </IfModule>
+</Files>
+
+<FilesMatch "^\.">
+    <IfModule mod_authz_core.c>
+        Require all denied
+    </IfModule>
+</FilesMatch>
+
+# Security HTTP headers (Apache - requires mod_headers)
+# PHP config/security_headers.php sets these for PHP pages; .htaccess covers static assets
+# HSTS is set by PHP only when HTTPS to avoid breaking local HTTP (XAMPP)
+<IfModule mod_headers.c>
+    Header always set X-Frame-Options "SAMEORIGIN"
+    Header always set X-Content-Type-Options "nosniff"
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+</IfModule>

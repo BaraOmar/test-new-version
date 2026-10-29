@@ -1,0 +1,157 @@
+/**
+ * HRMS / CultureHR - Luxury Purple & Orange Theme with Gradients
+ * Purple: #642754 | Orange: #eb652c
+ */
+:root {
+  /* Brand palette */
+  --purple: #642754;
+  --purple-dark: #58264a;
+  --purple-light: #7a3a6a;
+  --purple-lighter: #8b4d7a;
+  --purple-muted: #884f79;
+  --orange: #eb652c;
+  --orange-dark: #d85a24;
+  --orange-light: #f07a44;
+  --orange-lighter: #f58b52;
+
+  /* Gradients */
+  --gradient-purple: linear-gradient(135deg, #642754 0%, #7a3a6a 50%, #8b4d7a 100%);
+  --gradient-purple-subtle: linear-gradient(180deg, #642754 0%, #6d2e5e 100%);
+  --gradient-orange: linear-gradient(135deg, #f07a44 0%, #eb652c 50%, #d85a24 100%);
+  --gradient-orange-btn: linear-gradient(135deg, #eb652c 0%, #d85a24 100%);
+  --gradient-orange-hover: linear-gradient(135deg, #f07a44 0%, #eb652c 100%);
+  --gradient-page: linear-gradient(180deg, #faf6fa 0%, #f8f4f8 50%, #f5eef5 100%);
+  --gradient-card: linear-gradient(180deg, #ffffff 0%, #fefcfe 100%);
+  --gradient-navbar: linear-gradient(180deg, #6d2e5e 0%, #642754 50%, #58264a 100%);
+  --gradient-header: linear-gradient(135deg, #642754 0%, #7a3a6a 100%);
+
+  /* Semantic */
+  --primary: #642754;
+  --primary-dark: #58264a;
+  --accent: #eb652c;
+  --accent-dark: #d85a24;
+  --secondary: #e9ecf0;
+  --success: #3cd458;
+  --info: #642754;
+  --warning: #ffba00;
+  --danger: #ff4954;
+
+  /* Brand / The Chefz */
+  --brand-purple: #642754;
+  --brand-accent: #eb652c;
+  --brand-orange: #eb652c;
+  --active-hover: rgba(235, 101, 44, 0.15);
+  --active-section: #eb652c;
+
+  /* UI / Layout - Luxury feel */
+  --nav-bg: #642754;
+  --nav-text: #ffffff;
+  --body-bg: #f8f4f8;
+  --body-text: #4a4a4a;
+  --body-text-dark: #1a1a1a;
+  --border: #e8e0e8;
+  --light-gray: #faf8fb;
+  --input-border: #c4b8c4;
+  --dark: #2d1f2d;
+
+  /* Backgrounds */
+  --bg-light: #f8f4f8;
+  --bg-page: #f8f4f8;
+  --bg-card: #ffffff;
+
+  /* Shadows - luxury feel */
+  --shadow-soft: 0 2px 12px rgba(100, 39, 84, 0.08);
+  --shadow-card: 0 4px 24px rgba(100, 39, 84, 0.1);
+  --shadow-elevated: 0 12px 40px rgba(100, 39, 84, 0.15);
+  --shadow-orange: 0 4px 16px rgba(235, 101, 44, 0.25);
+
+  /* Spacing - generous margins */
+  --spacing-page: 2rem;
+  --spacing-card: 1.5rem;
+  --radius-sm: 0.5rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.25rem;
+  --radius-2xl: 1.5rem;
+}
+
+/* Typography - refined luxury */
+body {
+  font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+  color: var(--body-text);
+  background: var(--bg-page);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  letter-spacing: 0.01em;
+  line-height: 1.6;
+}
+
+/* Primary button - Orange gradient CTA */
+.hrms-btn-primary {
+  background: var(--gradient-orange-btn);
+  color: #fff;
+  font-weight: 600;
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--radius-md);
+  transition: all 0.2s ease;
+  box-shadow: var(--shadow-orange);
+}
+.hrms-btn-primary:hover {
+  background: var(--gradient-orange-hover);
+  box-shadow: 0 6px 20px rgba(235, 101, 44, 0.35);
+  transform: translateY(-1px);
+}
+
+/* Secondary button - Purple outline */
+.hrms-btn-secondary {
+  background: transparent;
+  color: var(--purple);
+  border: 2px solid rgba(255, 255, 255, 0.8);
+  font-weight: 600;
+  padding: 0.625rem 1.25rem;
+  border-radius: var(--radius-md);
+  transition: all 0.2s;
+}
+.hrms-btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: #fff;
+}
+
+/* Card luxury styling */
+.hrms-card {
+  background: var(--bg-card);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-soft);
+  border: 1px solid var(--border);
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+.hrms-card:hover {
+  box-shadow: var(--shadow-card);
+}
+
+/* Nav active state - orange accent */
+.hrms-nav-active {
+  background: var(--active-hover);
+  color: var(--accent);
+  font-weight: 600;
+}
+
+/* Input focus - orange ring */
+.hrms-input:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(235, 101, 44, 0.15);
+}
+
+/* Utility classes for consistent theming */
+.text-accent { color: var(--orange); }
+.bg-accent { background: var(--gradient-orange-btn); }
+.bg-purple-nav { background: var(--gradient-navbar); }
+.border-accent { border-color: var(--orange); }
+
+/* Gradient utility classes */
+.bg-gradient-purple { background: var(--gradient-purple); }
+.bg-gradient-navbar { background: var(--gradient-navbar); }
+.bg-gradient-header { background: var(--gradient-header); }
+.bg-gradient-orange { background: var(--gradient-orange-btn); }
+.bg-gradient-page { background: var(--gradient-page); }
+.bg-gradient-card { background: var(--gradient-card); }
